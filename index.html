@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منظم الدراسة الشامل - الصف الثاني الثانوي (الترم الأول 2024)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #4a69bd;
+            --secondary-color: #3498db;
+            --accent-color: #f39c12;
+            --text-color: #333;
+            --bg-color: #f0f0f0;
+            --card-bg: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #f39c12;
+            --text-color: #f0f0f0;
+            --bg-color: #1a1a1a;
+            --card-bg: #2c2c2c;
+            --shadow-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideIn 0.5s ease-out;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            background-color: var(--secondary-color);
+            animation: fadeIn 0.5s ease-out;
+            flex-wrap: wrap;
+        }
+
+        button {
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        main {
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .subject {
+            background-color: var(--card-bg);
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            transition: transform 0.3s;
+        }
+
+        .subject:hover {
+            transform: translateY(-5px);
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        .study-tip {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 300px;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            animation: slideIn 0.5s ease-out, pulse 2s infinite;
+            z-index: 1000;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        th, td {
+            border: 1px solid var(--shadow-color);
+            padding: 12px;
+            text-align: right;
+        }
+
+        th {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .lesson-checkbox {
+            margin-right: 10px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            flex: 1 1 200px;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+
+        .quiz-question {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .quiz-question:hover {
+            transform: translateY(-5px);
+        }
+
+        .quiz-question h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+
+        .unit, .chapter, .lesson {
+            margin-right: 20px;
+        }
+
+        .unit {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .chapter {
+            color: var(--secondary-color);
+        }
+
+        .weekly-schedule {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .day {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .day h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+        }
+
+        .lesson-item {
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: var(--bg-color);
+            border-radius: 4px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quiz-option {
+            margin: 5px 0;
+            padding: 10px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--shadow-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .quiz-option:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .quiz-option.selected {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .close {
+            color: #aaa;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--text-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        input[type="time"] {
+            margin: 10px 0;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid var(--shadow-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 20px;
+        }
+
+        .calendar-day {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            transition: transform 0.3s;
+        }
+
+        .calendar-day:hover {
+            transform: translateY(-5px);
+        }
+
+        .calendar-day-number {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: var(--primary-color);
+        }
+
+        .calendar-day-content {
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+
+        .play-quiz-btn {
+            margin-top: 5px;
+            padding: 5px 10px;
+            font-size: 0.8em;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .play-quiz-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+                margin: 0.25rem 0;
+            }
+
+            .weekly-schedule {
+                grid-template-columns: 1fr;
+            }
+
+            .calendar {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>منظم الدراسة الشامل - الصف الثاني الثانوي (الترم الأول 2024)</h1>
+        <button id="darkModeToggle">تبديل الوضع الليلي</button>
+    </header>
+    <nav>
+        <button id="scheduleBtn">الجدول الشهري</button>
+        <button id="weeklyScheduleBtn">الجدول الأسبوعي</button>
+        <button id="reviewBtn">المراجعة</button>
+        <button id="statsBtn">الإحصائيات</button>
+        <button id="quizBtn">الاختبار السريع</button>
+    </nav>
+    <main id="mainContent">
+        <!-- Content will be dynamically loaded here -->
+    </main>
+    <div id="studyTip" class="study-tip"></div>
+
+    <script>
+       
+const subjects = {
+  'اللغة العربية': {
+    'الوحدة الأولى: إعمال العقل': {
+      'الدرس الأول: إعمال العقل': [
+        'تعريف إعمال العقل',
+        'أهمية إعمال العقل في الحياة',
+        'أمثلة على إعمال العقل'
+      ],
+      'الدرس الثاني: آداب الصداقة': [
+        'تعريف الصداقة',
+        'أهمية الصداقة',
+        'آداب الصداقة'
+      ],
+      'الدرس الثالث: العلم والتقنية': [
+        'تعريف العلم',
+        'أهمية التقنية في العصر الحديث',
+        'العلاقة بين العلم والتقنية'
+      ]
+    },
+    'الوحدة الثانية: البلاغة': {
+      'الدرس الأول: علم البديع': [
+        'تعريف علم البديع',
+        'أركان علم البديع',
+        'أمثلة على البديع'
+      ],
+      'الدرس الثاني: علم المعاني': [
+        'تعريف علم المعاني',
+        'أهمية علم المعاني',
+        'أمثلة على المعاني'
+      ]
+    },
+    'الوحدة الثالثة: الأدب': {
+      'الدرس الأول: المعلقات': [
+        'تعريف المعلقات',
+        'أهم شعراء المعلقات',
+        'موضوعات المعلقات'
+      ],
+      'الدرس الثاني: من فنون النثر الجاهلي': [
+        'تعريف فنون النثر',
+        'أمثلة على فنون النثر الجاهلي',
+        'أهمية النثر الجاهلي'
+      ],
+      'الدرس الثالث: سمات الشعر في عصر صدر الإسلام': [
+        'خصائص الشعر في عصر صدر الإسلام',
+        'أهم الشعراء في هذا العصر',
+        'موضوعات الشعر في هذا العصر'
+      ],
+      'الدرس الرابع: الخطابة والوصايا في عصر صدر الإسلام': [
+        'تعريف الخطابة',
+        'أهمية الوصايا',
+        'أمثلة على الخطابة والوصايا'
+      ],
+      'الدرس الخامس: أغراض الشعر في العصر الأموي': [
+        'أغراض الشعر في العصر الأموي',
+        'أهم الشعراء في هذا العصر',
+        'موضوعات الشعر الأموي'
+      ],
+      'الدرس السادس: الخطابة في العصر الأموي': [
+        'خصائص الخطابة في العصر الأموي',
+        'أهمية الخطابة',
+        'أمثلة على الخطابة الأموية'
+      ]
+    },
+    'الوحدة الرابعة: النصوص الأدبية': {
+      'الدرس الأول: من تجارب الحياة': [
+        'أهمية تجارب الحياة',
+        'أمثلة على تجارب الحياة',
+        'الدروس المستفادة'
+      ],
+      'الدرس الثاني: سبيل الرشاد': [
+        'تعريف سبيل الرشاد',
+        'أهمية الرشاد',
+        'أمثلة على سبيل الرشاد'
+      ],
+      'الدرس الثالث: العلم حياة': [
+        'العلم وأهميته',
+        'العلاقة بين العلم والحياة',
+        'أهمية التعليم'
+      ],
+      'الدرس الرابع: من وصايا الحكماء': [
+        'أهمية وصايا الحكماء',
+        'أمثلة على وصايا الحكماء',
+        'الدروس المستفادة من الوصايا'
+      ],
+      'الدرس الخامس: من الهدي النبوي في خطبة الوداع': [
+        'أهمية خطبة الوداع',
+        'المبادئ التي تم طرحها',
+        'الدروس المستفادة'
+      ],
+      'الدرس السادس: علم وعمل': [
+        'العلاقة بين العلم والعمل',
+        'أهمية العمل',
+        'أمثلة على تطبيق العلم في العمل'
+      ]
+    },
+    'الوحدة الخامسة: النحو': {
+      'الدرس الأول: إعراب الفعل المضارع': [
+        'تعريف الفعل المضارع',
+        'كيفية إعراب الفعل المضارع',
+        'أمثلة على إعراب الفعل المضارع'
+      ],
+      'الدرس الثاني: نصب الفعل المضارع': [
+        'تعريف نصب الفعل المضارع',
+        'أدوات النصب',
+        'أمثلة على نصب الفعل المضارع'
+      ],
+      'الدرس الثالث: جزم الفعل المضارع بـ (أدوات الجزم)': [
+        'تعريف الجزم',
+        'أدوات الجزم',
+        'أمثلة على جزم الفعل المضارع'
+      ],
+      'الدرس الرابع: اقتران جواب الشرط بالفاء': [
+        'تعريف جواب الشرط',
+        'أهمية اقتران جواب الشرط بالفاء',
+        'أمثلة على ذلك'
+      ],
+      'الدرس الخامس: جزم الفعل المضارع (في جواب الطلب)': [
+        'تعريف جواب الطلب',
+        'كيفية جزم الفعل المضارع في جواب الطلب',
+        'أمثلة على ذلك'
+      ]
+    },
+    'الوحدة الثانية: حالات توكيد الفعل بالنون': {
+      'الدرس الأول: حالات توكيد الفعل بالنون': [
+        'تعريف توكيد الفعل بالنون',
+        'أهمية توكيد الفعل',
+        'أمثلة على توكيد الفعل بالنون'
+      ]
+    },
+    'الوحدة الثالثة: المصادر': {
+      'الدرس الأول: مصادر الأفعال الثلاثية وغير الثلاثية': [
+        'تعريف المصادر',
+        'أنواع المصادر',
+        'أمثلة على المصادر'
+      ],
+      'الدرس الثاني: المصدر الميمي والمصدر الصناعي': [
+        'تعريف المصدر الميمي',
+        'تعريف المصدر الصناعي',
+        'أمثلة على المصدر الميمي والمصدر الصناعي'
+      ]
+    }
+  },
+  'الأحياء': {
+    'الفصل الأول: التغذية والهضم في الكائنات الحية': {
+      'الدرس الأول: التغذية الذاتية': [
+        'تعريف التغذية الذاتية',
+        'أمثلة على الكائنات الحية التي تتغذى ذاتياً',
+        'العمليات الحيوية المتعلقة بالتغذية الذاتية'
+      ],
+      'الدرس الثاني: تابع التغذية الذاتية': [
+        'العمليات الكيميائية في التغذية الذاتية',
+        'أهمية الضوء والماء في هذه العملية',
+        'دور الكلوروفيل في عملية التركيب الضوئي'
+      ],
+      'الدرس الثالث: التغذية غير الذاتية': [
+        'تعريف التغذية غير الذاتية',
+        'أنواع الكائنات الحية التي تتغذى غير ذاتياً',
+        'العمليات الحيوية المتعلقة بالتغذية غير الذاتية'
+      ]
+    },
+    'الفصل الثاني: النقل في الكائنات الحية': {
+      'الدرس الأول: النقل في النبات': [
+        'أنظمة النقل في النباتات',
+        'دور الجذور والأوراق في عملية النقل',
+        'آلية نقل الماء والمعادن'
+      ],
+      'الدرس الثاني: النقل في الإنسان': [
+        'أجهزة النقل في جسم الإنسان',
+        'دور القلب والأوعية الدموية',
+        'نقل الأكسجين وثاني أكسيد الكربون'
+      ],
+      'الدرس الثالث: تابع النقل في الإنسان': [
+        'آلية نقل المواد الغذائية',
+        'تأثير النظام الغذائي على النقل',
+        'أهمية الدورة الدموية في الجسم'
+      ]
+    },
+    'الفصل الثالث: التنفس في الكائنات الحية': {
+      'الدرس الأول: التنفس الخلوي': [
+        'تعريف التنفس الخلوي',
+        'العمليات الكيميائية للتنفس الخلوي',
+        'أهمية الأكسجين في التنفس'
+      ],
+      'الدرس الثاني: التنفس في الكائنات الحية': [
+        'أنواع التنفس في الكائنات الحية',
+        'التنفس الهوائي واللاهوائي',
+        'دور التنفس في إنتاج الطاقة'
+      ]
+    }
+  },
+  'الفيزياء': {
+    'الوحدة الأولى: الموجات': {
+      'الفصل الأول: الحركة الموجية': {
+        'الدرس الأول: الحركة الاهتزازية': [
+          'تعريف الحركة الاهتزازية',
+          'أنواع الحركة الاهتزازية',
+          'أمثلة على الحركة الاهتزازية'
+        ],
+        'الدرس الثاني: الحركة الموجية': [
+          'تعريف الحركة الموجية',
+          'خصائص الموجات',
+          'أنواع الموجات (موجات طولية وعرضية)'
+        ]
+      },
+      'الفصل الثاني: الضوء': {
+        'الدرس الأول: انتشار الضوء - انعكاس الضوء - انكسار الضوء': [
+          'تعريف انتشار الضوء',
+          'قوانين الانعكاس',
+          'قوانين الانكسار'
+        ],
+        'الدرس الثاني: تداخل الضوء - حيود الضوء': [
+          'تعريف تداخل الضوء',
+          'أنواع التداخل (تداخل بناء وتداخل هدام)',
+          'تعريف حيود الضوء'
+        ],
+        'الدرس الثالث: الانعكاس الكلي للضوء': [
+          'تعريف الانعكاس الكلي',
+          'شروط الانعكاس الكلي',
+          'تطبيقات الانعكاس الكلي (مثل الألياف الضوئية)'
+        ],
+        'الدرس الرابع: انحراف الضوء في المنشور الثلاثي': [
+          'تعريف المنشور الثلاثي',
+          'كيفية انحراف الضوء في المنشور',
+          'تطبيقات انحراف الضوء'
+        ],
+        'الدرس الخامس: المنشور الثلاثي في وضع النهاية الصغري للانحراف - المنشور الرقيق': [
+          'تعريف وضع النهاية الصغري للانحراف',
+          'خصائص المنشور الرقيق',
+          'تطبيقات المنشور الرقيق'
+        ]
+      }
+    },
+    'الوحدة الثانية: خواص الموائع': {
+      'الفصل الرابع: خواص الموائع المتحركة': {
+        'الدرس الأول: السريان': [
+          'تعريف السريان',
+          'أنواع السريان (سريان مستقر وغير مستقر)',
+          'قوانين السريان (مثل قانون برنولي)'
+        ],
+        'الدرس الثاني: اللزوجة': [
+          'تعريف اللزوجة',
+          'أهمية اللزوجة في الموائع',
+          'تطبيقات اللزوجة (مثل في أنظمة النقل)'
+        ]
+      }
+    }
+  },
+  'الكيمياء': {
+    'الباب الأول: بنية الذرة': {
+      'الدرس الأول: تطور مفهوم بنية الذرة': [
+        'مقدمة عن بنية الذرة',
+        'تاريخ تطور مفهوم الذرة',
+        'النماذج المختلفة لبنية الذرة'
+      ],
+      'الدرس الثاني: طيف الانبعاث للذرات': [
+        'تعريف طيف الانبعاث',
+        'كيفية تكوين طيف الانبعاث',
+        'أهمية طيف الانبعاث في دراسة الذرات'
+      ],
+      'الدرس الثالث: أعداد الكم': [
+        'تعريف أعداد الكم',
+        'أنواع أعداد الكم (عدد الكم الرئيسي، عدد الكم الثانوي، عدد الكم المغناطيسي، عدد الكم Spin)',
+        'أهمية أعداد الكم في تحديد حالة الإلكترونات'
+      ],
+      'الدرس الرابع: قواعد توزيع الإلكترونات': [
+        'قواعد توزيع الإلكترونات (مثل قاعدة أوفباو)',
+        'مبدأ استبعاد باولي',
+        'قواعد هوند'
+      ]
+    },
+    'الباب الثاني: خواص الموائع': {
+      'الدرس الأول: الجدول الدوري الحديث': [
+        'تعريف الجدول الدوري',
+        'تاريخ الجدول الدوري',
+        'أهمية الجدول الدوري في الكيمياء'
+      ],
+      'الدرس الثاني: تدرج الخواص في الجدول الدوري': [
+        'تدرج الحجم الذري',
+        'تدرج الكهربية',
+        'تدرج السالبية الكهربية'
+      ],
+      'الدرس الثالث: تابع تدرج الخواص في الجدول الدوري': [
+        'تدرج الطاقة التأينية',
+        'تدرج القدرة على التفاعل',
+        'تدرج الكثافة'
+      ],
+      'الدرس الرابع: أعداد التأكسد': [
+        'تعريف أعداد التأكسد',
+        'كيفية تحديد أعداد التأكسد',
+        'أهمية أعداد التأكسد في التفاعلات الكيميائية'
+      ]
+    }
+  },
+  'الرياضيات': {
+    'الوحدة الأولى: الجبر': {
+      'الدرس الأول: الدوال الحقيقية - تحديد المجال والمدى - بحث الاطراد': [
+        'تعريف الدوال الحقيقية',
+        'كيفية تحديد المجال والمدى',
+        'بحث الاطراد للدوال'
+      ],
+      'الدرس الثاني: العمليات على الدوال - تركيب دالتين': [
+        'تعريف العمليات على الدوال',
+        'كيفية تركيب دالتين',
+        'أمثلة على تركيب الدوال'
+      ],
+      'الدرس الثالث: بعض خواص الدوال - الدوال الزوجية والفردية - الدوال الأحادية': [
+        'تعريف الدوال الزوجية والفردية',
+        'خصائص الدوال الأحادية',
+        'أمثلة توضيحية'
+      ],
+      'الدرس الرابع: التمثيل البياني للدوال الأساسية ورسم الدالة مجزأة المجال': [
+        'كيفية رسم الدوال الأساسية',
+        'تمثيل الدالة مجزأة المجال',
+        'أمثلة على التمثيل البياني'
+      ],
+      'الدرس الخامس: التحويلات الهندسية لمنحنيات الدوال الأساسية': [
+        'تعريف التحويلات الهندسية',
+        'أنواع التحويلات',
+        'أمثلة تطبيقية'
+      ],
+      'الدرس السادس: حل معادلات ومتباينات القيمة المطلقة': [
+        'تعريف القيمة المطلقة',
+        'كيفية حل معادلات القيمة المطلقة',
+        'أمثلة على المتباينات'
+      ]
+    },
+    'الوحدة الثانية: الأسس واللوغاريتمات وتطبيقات عليها': {
+      'الدرس الأول: الأسس الكسرية والمعادلات الأسية': [
+        'تعريف الأسس الكسرية',
+        'حل المعادلات الأسية',
+        'أمثلة توضيحية'
+      ],
+      'الدرس الثاني: الدالة الأسية وتطبيقاتها': [
+        'تعريف الدالة الأسية',
+        'تطبيقات الدالة الأسية',
+        'أمثلة عملية'
+      ],
+      'الدرس الثالث: الدالة العكسية': [
+        'تعريف الدالة العكسية',
+        'كيفية إيجاد الدالة العكسية',
+        'أمثلة توضيحية'
+      ],
+      'الدرس الرابع: الدالة اللوغاريتمية وتمثيلها البياني': [
+        'تعريف الدالة اللوغاريتمية',
+        'كيفية رسم الدالة اللوغاريتمية',
+        'أمثلة على التمثيل البياني'
+      ],
+      'الدرس الخامس: بعض خواص اللوغاريتمات': [
+        'خصائص اللوغاريتمات',
+        'قوانين اللوغاريتمات',
+        'أمثلة تطبيقية'
+      ]
+    },
+    'التفاضل وحساب المثلثات': {
+      'الوحدة الأولى: النهايات والاتصال': {
+        'الدرس الأول: مقدمة في النهايات - تقدير النهاية عدديًا وبيانيًا': [
+          'تعريف النهايات',
+          'تقدير النهاية عدديًا',
+          'تقدير النهاية بيانيًا'
+        ],
+        'الدرس الثاني: إيجاد نهاية الدالة جبريًا': [
+          'كيفية إيجاد النهاية جبريًا',
+          'أمثلة توضيحية'
+        ],
+        'الدرس الثالث: نظرية 4 - القانون': [
+          'تعريف نظرية 4',
+          'تطبيقات على النظرية'
+        ],
+        'الدرس الرابع: نهاية الدالة عند اللانهاية': [
+          'كيفية إيجاد النهاية عند اللانهاية',
+          'أمثلة توضيحية'
+        ],
+        'الدرس الخامس: نهايات الدوال المثلثية': [
+          'تعريف نهايات الدوال المثلثية',
+          'أمثلة على النهايات'
+        ],
+        'الدرس السادس: بحث وجود نهاية للدالة مجزأة المجال': [
+          'كيفية بحث وجود نهاية',
+          'أمثلة توضيحية'
+        ],
+        'الدرس السابع: الاتصال': [
+          'تعريف الاتصال',
+          'شروط الاتصال',
+          'أمثلة توضيحية'
+        ]
+      },
+      'الوحدة الثانية: حساب المثلثات': {
+        'الدرس الأول: قانون الجيب - قاعدة الجيب': [
+          'تعريف قانون الجيب',
+          'كيفية استخدام قاعدة الجيب',
+          'أمثلة تطبيقية'
+        ],
+        'الدرس الثاني: قانون جيب التمام - قاعدة جيب التمام': [
+          'تعريف قانون جيب التمام',
+          'كيفية استخدام قاعدة جيب التمام',
+          'أمثلة تطبيقية'
+        ],
+        'الدرس الثالث: حل المثلث': [
+          'طرق حل المثلثات',
+          'أمثلة على حل المثلثات',
+          'تطبيقات عملية على حل المثلثات'
+        ]
+      }
+    }
+  },
+  'رياضة تطبيقية': {
+    'الوحدة الأولى: الاستاتيكا': {
+      'الدرس الأول: القوى - محصلة قوتين متلاقيتين في نقطة': [
+        'تعريف القوى',
+        'كيفية حساب محصلة قوتين',
+        'أمثلة توضيحية'
+      ],
+      'الدرس الثاني: تحليل القوة إلى مركبتين': [
+        'تعريف تحليل القوة',
+        'كيفية تحليل القوة إلى مركبتين',
+        'أمثلة تطبيقية'
+      ],
+      'الدرس الثالث: محصلة عدة قوى مستوية متلاقية في نقطة': [
+        'كيفية إيجاد محصلة عدة قوى',
+        'أمثلة على القوى المستوية'
+      ],
+      'الدرس الرابع: اتزان جسم تحت تأثير قوتين/ثلاث قوى متلاقية في نقطة (قاعدة مثلث القوى - قاعدة لامي)': [
+        'تعريف الاتزان',
+        'قاعدة مثلث القوى',
+        'قاعدة لامي',
+        'أمثلة توضيحية'
+      ],
+      'الدرس الخامس: تابع الاتزان تلاقي خطوط عمل ثلاث قوى متزنة': [
+        'كيفية دراسة اتزان ثلاث قوى',
+        'أمثلة تطبيقية'
+      ]
+    },
+    'الوحدة الثانية: الهندسة والقياس': {
+      'الدرس الأول: المستقيمات والمستويات في الفراغ': [
+        'تعريف المستقيمات',
+        'تعريف المستويات',
+        'أمثلة توضيحية'
+      ],
+      'الدرس الثاني: الهرم': [
+        'تعريف الهرم',
+        'خصائص الهرم',
+        'أمثلة تطبيقية'
+      ],
+      'الدرس الثالث: المخروط': [
+        'تعريف المخروط',
+        'خصائص المخروط',
+        'أمثلة توضيحية'
+      ],
+      'الدرس الرابع: الدائرة': [
+        'تعريف الدائرة',
+        'خصائص الدائرة',
+        'أمثلة تطبيقية'
+      ]
+    }
+  }
+};
+
+        const mainContent = document.getElementById('mainContent');
+        const scheduleBtn = document.getElementById('scheduleBtn');
+        const weeklyScheduleBtn = document.getElementById('weeklyScheduleBtn');
+        const reviewBtn = document.getElementById('reviewBtn');
+        const statsBtn = document.getElementById('statsBtn');
+        const quizBtn = document.getElementById('quizBtn');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const studyTipElement = document.getElementById('studyTip');
+
+        let progress = {};
+        let studyTimes = {
+            schoolStart: '08:00',
+            schoolEnd: '14:00',
+            studyStart: '16:00',
+            studyEnd: '20:00'
+        };
+
+        function initializeProgress() {
+            Object.keys(subjects).forEach(subject => {
+                progress[subject] = {};
+                Object.keys(subjects[subject]).forEach(unit => {
+                    progress[subject][unit] = {};
+                    Object.keys(subjects[subject][unit]).forEach(lesson => {
+                        progress[subject][unit][lesson] = false;
+                    });
+                });
+            });
+        }
+
+        function createMonthlySchedule() {
+            const schedule = document.createElement('div');
+            schedule.innerHTML = '<h2>الجدول الدراسي الشهري</h2>';
+            
+            const currentDate = new Date();
+            const currentMonth = currentDate.getMonth();
+            const currentYear = currentDate.getFullYear();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+
+            const calendar = document.createElement('div');
+            calendar.className = 'calendar';
+
+            // Add day names
+            const dayNames = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+            dayNames.forEach(day => {
+                const dayNameElement = document.createElement('div');
+                dayNameElement.className = 'calendar-day';
+                dayNameElement.textContent = day;
+                calendar.appendChild(dayNameElement);
+            });
+
+            // Add empty cells for days before the first day of the month
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day';
+                calendar.appendChild(emptyDay);
+            }
+
+            // Add days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+
+                const dayNumber = document.createElement('div');
+                dayNumber.className = 'calendar-day-number';
+                dayNumber.textContent = day;
+                dayElement.appendChild(dayNumber);
+
+                const subjectKeys = Object.keys(subjects);
+                const randomSubject = subjectKeys[Math.floor(Math.random() * subjectKeys.length)];
+                const unitKeys = Object.keys(subjects[randomSubject]);
+                const randomUnit = unitKeys[Math.floor(Math.random() * unitKeys.length)];
+                const lessonKeys = Object.keys(subjects[randomSubject][randomUnit]);
+                const randomLesson = lessonKeys[Math.floor(Math.random() * lessonKeys.length)];
+
+                const content = document.createElement('div');
+                content.className = 'calendar-day-content';
+                content.innerHTML = `
+                    <div>${randomSubject}</div>
+                    <div>${randomLesson}</div>
+                    <button class="play-quiz-btn" onclick="playQuiz('${randomSubject}', '${randomUnit}', '${randomLesson}')">العب الآن</button>
+                `;
+                dayElement.appendChild(content);
+
+                calendar.appendChild(dayElement);
+            }
+
+            schedule.appendChild(calendar);
+            mainContent.innerHTML = '';
+            mainContent.appendChild(schedule);
+        }
+
+        function createWeeklySchedule() {
+            const schedule = document.createElement('div');
+            schedule.innerHTML = '<h2>الجدول الأسبوعي</h2>';
+            
+            const weeklySchedule = document.createElement('div');
+            weeklySchedule.className = 'weekly-schedule';
+            
+            const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+            
+            days.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'day';
+                dayElement.innerHTML = `<h3>${day}</h3>`;
+                
+                // Add lessons for each day
+                Object.keys(subjects).forEach(subject => {
+                    const units = Object.keys(subjects[subject]);
+                    const randomUnit = units[Math.floor(Math.random() * units.length)];
+                    const lessons = Object.keys(subjects[subject][randomUnit]);
+                    const randomLesson = lessons[Math.floor(Math.random() * lessons.length)];
+                    
+                    const lessonElement = document.createElement('div');
+                    lessonElement.className = 'lesson-item';
+                    lessonElement.textContent = `${subject}: ${randomLesson}`;
+                    dayElement.appendChild(lessonElement);
+                });
+                
+                weeklySchedule.appendChild(dayElement);
+            });
+            
+            schedule.appendChild(weeklySchedule);
+            mainContent.innerHTML = '';
+            mainContent.appendChild(schedule);
+        }
+
+        function createReviewSection() {
+            const review = document.createElement('div');
+            review.innerHTML = '<h2>مراجعة الدروس</h2>';
+            
+            Object.keys(subjects).forEach(subject => {
+                const subjectDiv = document.createElement('div');
+                subjectDiv.className = 'subject';
+                subjectDiv.innerHTML = `<h3>${subject}</h3>`;
+                
+                Object.keys(subjects[subject]).forEach(unit => {
+                    const unitDiv = document.createElement('div');
+                    unitDiv.className = 'unit';
+                    unitDiv.innerHTML = `<h4>${unit}</h4>`;
+                    
+                    Object.keys(subjects[subject][unit]).forEach(lesson => {
+                        const lessonDiv = document.createElement('div');
+                        lessonDiv.className = 'lesson';
+                        lessonDiv.innerHTML = `
+                            <label>
+                                <input type="checkbox" class="lesson-checkbox" data-subject="${subject}" data-unit="${unit}" data-lesson="${lesson}" ${progress[subject][unit][lesson] ? 'checked' : ''}>
+                                ${lesson}
+                            </label>
+                        `;
+                        unitDiv.appendChild(lessonDiv);
+                    });
+                    
+                    subjectDiv.appendChild(unitDiv);
+                });
+                
+                review.appendChild(subjectDiv);
+            });
+            
+            mainContent.innerHTML = '';
+            mainContent.appendChild(review);
+            
+            document.querySelectorAll('.lesson-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    const subject = e.target.dataset.subject;
+                    const unit = e.target.dataset.unit;
+                    const lesson = e.target.dataset.lesson;
+                    progress[subject][unit][lesson] = e.target.checked;
+                    updateProgress();
+                });
+            });
+        }
+
+        function createStatistics() {
+            const stats = document.createElement('div');
+            stats.innerHTML = '<h2>إحصائيات الدراسة</h2>';
+            stats.className = 'stats';
+            
+            let totalLessons = 0;
+            let completedLessons = 0;
+            
+            Object.keys(subjects).forEach(subject => {
+                let subjectLessons = 0;
+                let subjectCompleted = 0;
+                
+                Object.keys(subjects[subject]).forEach(unit => {
+                    Object.keys(subjects[subject][unit]).forEach(lesson => {
+                        subjectLessons++;
+                        if (progress[subject][unit][lesson]) {
+                            subjectCompleted++;
+                        }
+                    });
+                });
+                
+                totalLessons += subjectLessons;
+                completedLessons += subjectCompleted;
+                
+                const subjectCard = document.createElement('div');
+                subjectCard.className = 'stat-card';
+                subjectCard.innerHTML = `
+                    <h3>${subject}</h3>
+                    <p>الدروس المكتملة: ${subjectCompleted} / ${subjectLessons}</p>
+                    <p>نسبة الإنجاز: ${Math.round((subjectCompleted / subjectLessons) * 100)}%</p>
+                `;
+                stats.appendChild(subjectCard);
+            });
+            
+            const overallCard = document.createElement('div');
+            overallCard.className = 'stat-card';
+            overallCard.innerHTML = `
+                <h3>الإجمالي</h3>
+                <p>الدروس المكتملة: ${completedLessons} / ${totalLessons}</p>
+                <p>نسبة الإنجاز الكلية: ${Math.round((completedLessons / totalLessons) * 100)}%</p>
+            `;
+            stats.appendChild(overallCard);
+            
+            mainContent.innerHTML = '';
+            mainContent.appendChild(stats);
+        }
+
+        function createQuizSection() {
+            const quiz = document.createElement('div');
+            quiz.innerHTML = '<h2>الاختبار السريع</h2>';
+            
+            Object.keys(subjects).forEach(subject => {
+                const subjectQuiz = document.createElement('div');
+                subjectQuiz.className = 'quiz-question';
+                subjectQuiz.innerHTML = `<h3>${subject}</h3>`;
+                
+                let units = Object.keys(subjects[subject]);
+                let randomUnit = units[Math.floor(Math.random() * units.length)];
+                let lessons = Object.keys(subjects[subject][randomUnit]);
+                let randomLesson = lessons[Math.floor(Math.random() * lessons.length)];
+                
+                const question = document.createElement('p');
+                question.textContent = `ما هي النقاط الرئيسية في ${randomLesson}؟`;
+                subjectQuiz.appendChild(question);
+                
+                const options = subjects[subject][randomUnit][randomLesson];
+                const optionsContainer = document.createElement('div');
+                optionsContainer.className = 'quiz-options';
+                
+                options.forEach((option, index) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'quiz-option';
+                    optionElement.textContent = option;
+                    optionElement.addEventListener('click', () => {
+                        document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+                        optionElement.classList.add('selected');
+                    });
+                    optionsContainer.appendChild(optionElement);
+                });
+                
+                subjectQuiz.appendChild(optionsContainer);
+                quiz.appendChild(subjectQuiz);
+            });
+            
+            mainContent.innerHTML = '';
+            mainContent.appendChild(quiz);
+        }
+
+        function updateProgress() {
+            localStorage.setItem('studyProgress', JSON.stringify(progress));
+        }
+
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('studyProgress');
+            if (savedProgress) {
+                progress = JSON.parse(savedProgress);
+            } else {
+                initializeProgress();
+            }
+        }
+
+        function showStudyTip() {
+            const tips = [
+                'خذ فترات راحة منتظمة لتحسين التركيز',
+                'استخدم تقنية بومودورو: 25 دقيقة دراسة، 5 دقائق راحة',
+                'راجع ملاحظاتك في نهاية كل يوم',
+                'حاول شرح المفاهيم لشخص آخر لتعزيز فهمك',
+                'ابدأ يومك بالمواد الأصعب عندما يكون ذهنك في أفضل حالاته'
+            ];
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            studyTipElement.textContent = `نصيحة: ${randomTip}`;
+            studyTipElement.style.display = 'block';
+            setTimeout(() => {
+                studyTipElement.style.display = 'none';
+            }, 5000);
+        }
+
+        function showStudyTimeModal() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>تحديد أوقات الدراسة</h2>
+                    <label for="schoolStart">بداية المدرسة:</label>
+                    <input type="time" id="schoolStart" value="${studyTimes.schoolStart}"><br>
+                    <label for="schoolEnd">نهاية المدرسة:</label>
+                    <input type="time" id="schoolEnd" value="${studyTimes.schoolEnd}"><br>
+                    <label for="studyStart">بداية وقت المذاكرة:</label>
+                    <input type="time" id="studyStart" value="${studyTimes.studyStart}"><br>
+                    <label for="studyEnd">نهاية وقت المذاكرة:</label>
+                    <input type="time" id="studyEnd" value="${studyTimes.studyEnd}"><br>
+                    <button id="saveStudyTimes">حفظ</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            const closeBtn = modal.querySelector('.close');
+            const saveBtn = modal.querySelector('#saveStudyTimes');
+
+            closeBtn.onclick = () => {
+                document.body.removeChild(modal);
+            };
+
+            saveBtn.onclick = () => {
+                studyTimes.schoolStart = document.getElementById('schoolStart').value;
+                studyTimes.schoolEnd = document.getElementById('schoolEnd').value;
+                studyTimes.studyStart = document.getElementById('studyStart').value;
+                studyTimes.studyEnd = document.getElementById('studyEnd').value;
+                localStorage.setItem('studyTimes', JSON.stringify(studyTimes));
+                document.body.removeChild(modal);
+                createWeeklySchedule(); // Refresh the weekly schedule with new times
+            };
+
+            modal.style.display = 'block';
+        }
+
+        function loadStudyTimes() {
+            const savedTimes = localStorage.getItem('studyTimes');
+            if (savedTimes) {
+                studyTimes = JSON.parse(savedTimes);
+            }
+        }
+
+        function playQuiz(subject, unit, lesson) {
+            const quizContent = subjects[subject][unit][lesson];
+            const quizModal = document.createElement('div');
+            quizModal.className = 'modal';
+            quizModal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>اختبار سريع: ${subject} - ${lesson}</h2>
+                    <div id="quizQuestions"></div>
+                    <button id="submitQuiz">إرسال الإجابات</button>
+                </div>
+            `;
+            document.body.appendChild(quizModal);
+
+            const quizQuestions = quizModal.querySelector('#quizQuestions');
+            quizContent.forEach((topic, index) => {
+                const question = document.createElement('div');
+                question.innerHTML = `
+                    <p>${index + 1}. ما هو ${topic}؟</p>
+                    <input type="text" id="answer${index}" placeholder="أدخل إجابتك هنا">
+                `;
+                quizQuestions.appendChild(question);
+            });
+
+            const closeBtn = quizModal.querySelector('.close');
+            const submitBtn = quizModal.querySelector('#submitQuiz');
+
+            closeBtn.onclick = () => {
+                document.body.removeChild(quizModal);
+            };
+
+            submitBtn.onclick = () => {
+                let score = 0;
+                quizContent.forEach((topic, index) => {
+                    const answer = document.getElementById(`answer${index}`).value.trim().toLowerCase();
+                    if (answer.includes(topic.toLowerCase())) {
+                        score++;
+                    }
+                });
+                alert(`لقد حصلت على ${score} من ${quizContent.length} نقاط!`);
+                document.body.removeChild(quizModal);
+            };
+
+            quizModal.style.display = 'block';
+        }
+
+        scheduleBtn.addEventListener('click', createMonthlySchedule);
+        weeklyScheduleBtn.addEventListener('click', () => {
+            createWeeklySchedule();
+            showStudyTimeModal();
+        });
+        reviewBtn.addEventListener('click', createReviewSection);
+        statsBtn.addEventListener('click', createStatistics);
+        quizBtn.addEventListener('click', createQuizSection);
+
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        loadProgress();
+        loadStudyTimes();
+        createMonthlySchedule();
+
+        setInterval(showStudyTip, 300000);
+    </script>
+</body>
+</html>
